@@ -15,6 +15,12 @@
 #include "Job.h"
 #include "SchedulerClass.h"
 
+
+//Create Global Scheduler
+SchedulerClass scheduler;
+
+
+//Create HANDLER for CTRL EVENTS
 BOOL CtrlHandler(DWORD fdwCtrolType)
 {
 	switch (fdwCtrolType)
@@ -27,13 +33,14 @@ BOOL CtrlHandler(DWORD fdwCtrolType)
 }
 
 
-SchedulerClass scheduler;
-
+//Just a sample task to test the scheduling
 void sampleTask()
 {
 	std::cout << "Current Running Task: " << scheduler.getCurrentID() << std::endl;
 }
 
+
+//Start the timer
 void startTimer(std::function<void(void)> func, unsigned int interval)
 {
 	std::thread([func, interval]()
@@ -58,7 +65,7 @@ void schedule()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-
+	//Create some jobs
 	Job Job1(1, 0);
 	Job1.funcToCall = sampleTask;
 	Job Job2(2, 0);
@@ -66,14 +73,15 @@ int _tmain(int argc, _TCHAR* argv[])
 	Job Job3(3, 0);
 	Job3.funcToCall = sampleTask;
 
-
+	//The quantum = here is 3 seconds
 	unsigned int QUANTUM = 3000;
 
-
+	//Add some jobs to the scheduler
 	scheduler.ADDJOB(Job1);
 	scheduler.ADDJOB(Job2);
 	scheduler.ADDJOB(Job3);
 
+	//BEGIN
 	startTimer(schedule, QUANTUM);
 
 	while (1);
