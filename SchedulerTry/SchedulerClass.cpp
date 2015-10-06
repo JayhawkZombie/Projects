@@ -3,9 +3,15 @@
 
 #include <iostream>
 
+void Sample() {
+	std::cout << "Initial Job: " << std::endl;
+}
 
 SchedulerClass::SchedulerClass() : CurrentJob(Job(0, 0))
 {
+	Job initJob(0, 0);
+	initJob.funcToCall = Sample;
+	CurrentJob = initJob;
 }
 
 
@@ -15,7 +21,7 @@ SchedulerClass::~SchedulerClass()
 
 unsigned int SchedulerClass::getCurrentID()
 {
-	return (JOBQUEUE.empty() ? 0 : JOBQUEUE.front().JOBID);
+	return ( CurrentJob.JOBID );
 }
 
 void SchedulerClass::ScheduleJobs()
@@ -36,6 +42,8 @@ void SchedulerClass::ScheduleJobs()
 	CurrentJob = NEXTJOB;
 
 	std::cout << "=======================================" << std::endl;
+
+	CurrentJob.funcToCall();
 
 	return;
 }
