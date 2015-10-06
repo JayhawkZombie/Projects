@@ -72,9 +72,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	Job2.funcToCall = sampleTask;
 	Job Job3(3, 0);
 	Job3.funcToCall = sampleTask;
+	Job Job4(4, 0);
+	Job4.funcToCall = sampleTask;
 
 	//The quantum = here is 3 seconds
-	unsigned int QUANTUM = 3000;
+	unsigned int QUANTUM = 5000;
 
 	//Add some jobs to the scheduler
 	scheduler.ADDJOB(Job1);
