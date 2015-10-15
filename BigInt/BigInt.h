@@ -3,6 +3,8 @@
 #include <string>
 #include <iostream>
 
+#include <windows.h>
+
 namespace BIGINT
 {
 
@@ -11,11 +13,22 @@ namespace BIGINT
 	class BigInt
 	{
 	public:
+
+		/* Constructors */
+		/* Default Constructor */
 		BigInt();
+		/* Constructor accepting std::string */
 		BigInt(std::string s);
+		/* Constructor accepting a regular integer*/
 		BigInt(int i);
+		/* Constructor accepting another 
+		BigInt - Copy constructor*/
 		BigInt(const BIGINT::BigInt &toCopy);
+
+		//Destructor
 		~BigInt();
+
+		/* Member functions - utility functions */
 		bool positive() const;
 		bool negative() const;
 		int length() const;
@@ -30,7 +43,7 @@ namespace BIGINT
 
 		/* = operator broken - DO NOT USE */
 		void operator= (const BigInt &toEqual);
-		bool operator== (const BigInt equalTo);
+		bool operator== (const BigInt &equalTo);
 		friend std::ostream &operator << (std::ostream &os, const BigInt &toPrint);
 
 	private:
