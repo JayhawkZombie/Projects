@@ -101,7 +101,15 @@ BIGINT::BigInt::BigInt(std::string s)
 	numDigits = (sign == '+' ? s.length() : s.length() - 1);
 }
 
-
+/*
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+|| For this constructor - we take the following steps                        ||
+|| 1) Determine if the incoming BigInt is empty							     ||
+|| 2) If it is, follow the default constructor, otherwise go to step 3		 ||
+|| 3) Allocate storage for the new BigInt, if necessary                      ||
+|| 3) Increment through it and assign the values of the BigInt accordingly   ||
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+*/
 BIGINT::BigInt::BigInt(const BIGINT::BigInt &toCopy)
 {
 	if (toCopy.length() == 0)
@@ -122,22 +130,49 @@ BIGINT::BigInt::BigInt(const BIGINT::BigInt &toCopy)
 	}
 }
 
+/*
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+|| For this function - we take the following steps                           ||
+|| 1) return the value stored in numDigits - gives the number of digits      ||
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+*/
 int BIGINT::BigInt::length() const
 {
 	return numDigits;
 }
 
+
+/*
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+|| For this function - we take the following steps                           ||
+|| 1) Returns TRUE if the number is positive                                 ||
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+*/
 bool BIGINT::BigInt::positive() const
 {
 	return (sign == '+');
 }
 
+/*
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+|| For this destructor we take the following steps                           ||
+|| 1) deallocate the digits array IF TE STRING IS NOT EMPTY                  ||
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+*/
 BIGINT::BigInt::~BigInt()
 {
-	if (length() > 1)
+	if (length() >= 1)
 		delete[] digits;
 }
 
+
+/*
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+|| For this function - we take the following steps                           ||
+|| 1) return the character stored in index i                                 ||
+|| -- The indexing is done from left to right                                ||
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+*/
 char& BIGINT::BigInt::operator[] (const int index) const
 {
 	return (digits[index]);
@@ -159,7 +194,12 @@ BIGINT::BigInt BIGINT::BigInt::operator+(const BIGINT::BigInt toAdd)
 	return BIGINT::BigInt(0);
 }
 
-
+/*
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+|| For this function - we take the following steps                           ||
+|| 1) output the elements in the digits arrat IF NOT EMPTY                   ||
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+*/
 std::ostream& BIGINT::operator<< (std::ostream &os, const BigInt &toPrint)
 {
 	std::cout << "PRINTING: " << std::endl;
@@ -172,6 +212,36 @@ std::ostream& BIGINT::operator<< (std::ostream &os, const BigInt &toPrint)
 	return os;
 }
 
+/*
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+|| For this function - we take the following steps                           ||
+|| 1) Return TRUE is every element in digits is equal to every element in    ||
+||    equal.digits                                                           ||
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+*/
+bool BIGINT::BigInt::operator== (const BIGINT::BigInt &equal)
+{
+	if (digits == nullptr && equal.isEmpty())
+		return true;
+
+	for (int i = 0; i < numDigits; i++)
+	{
+		if (digits[i] != equal[i])
+			return false;
+	}
+	return true;
+}
+
+/*
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+|| For this function - we take the following steps                           ||
+|| 1) return TRUE if numDigits == 0                                          ||
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+*/
+bool BIGINT::BigInt::isEmpty() const
+{
+	return (numDigits == 0);
+}
 
 /* BROKEN - DO NOT USE */
 void BIGINT::BigInt::operator= (const BIGINT::BigInt &IntToCopy)
