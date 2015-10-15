@@ -50,6 +50,12 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	std::cout << copied << std::endl;
 
+	std::cout << "==============================" << std::endl;
+
+	std::cout << (copied == myInt2) << std::endl;
+
+	std::cout << "==============================" << std::endl;
+
 	return 0;
 }
 
