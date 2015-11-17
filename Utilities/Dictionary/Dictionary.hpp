@@ -123,7 +123,7 @@ void DoubleTemplatedDictionary<__key_type__, __value_type__>::alterDefaultValue(
 {
 	if (m_numEntries > 0)
 	{
-		m_keys[0] = newDefaultValue;
+		m_values[0] = newDefaultValue;
 		m_defaultReturn = newDefaultValue;
 	}
 }
