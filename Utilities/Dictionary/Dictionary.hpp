@@ -195,12 +195,57 @@ bool DoubleTemplatedDictionary<__key_type__, __value_type__>::removeFromKey(__ke
 }
 
 template<typename __key_type__, typename __value_type__>
-bool DoubleTemplatedDictionary<__key_type__, __value_type__>::removeFromValue(__value_type__ value)
+bool DoubleTemplatedDictionary<__key_type__, __value_type__>::removeFromValue(__value_type__ value, DictEnum REMOVE_COMMAND = DICT_REMOVE_ALL_MATCHING_ENTRIES)
 {
 	if (m_numEntries < 1 || m_defaultReturn == value)
 		return false;
 	else
 	{
-		return (removeIndexedEntry(getIndexOfValue(value)));
+		if (REMOVE_COMMAND == DICT_REMOVE_ALL_MATCHING_ENTRIES) {
+			bool didremove = false;
+			while (removeIndexedEntry(getIndexOfValue(value)))
+			{
+				didremove = true;
+			}
+			return didremove;
+		}
+		else
+			return (removeIndexedEntry(getIndexOfValue(value)));
 	}
+}
+
+template<typename __key_type__, typename __value_type__>
+bool DoubleTemplatedDictionary<__key_type__, __value_type__>::alterKey(__key_type__ oldKey, __key_type__ newKey)
+{
+	if (oldKey == m_defaultKey)
+		return false;
+	
+	for (int i = 1; i < m_numEntries; i++)
+	{
+		if (m_keys[i] == oldKey)
+			m_keys[i] = newKey;
+	}
+}
+
+template<typename __key_type__, typename __value_type__>
+__value_type__ DoubleTemplatedDictionary<__key_type__, __value_type__>::operator[](const __key_type__ &key) const
+{
+	for (int i = 0; i < m_numEntries; i++)
+	{
+		if (m_keys[i] == key)
+			return m_values[i];
+	}
+	return
+		m_defaultReturn;
+}
+
+template<typename __key_type__, typename __value_type__>
+__value_type__& DoubleTemplatedDictionary<__key_type__, __value_type__>::operator[](const __key_type__ &key)
+{
+	for (int i = 0; i < m_numEntries; i++)
+	{
+		if (m_keys[i] == key)
+			return m_values[i];
+	}
+	return m_defaultReturn;
 }
