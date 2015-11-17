@@ -14,4 +14,4 @@ ________________________________________________________________________________
 -  The dictionary is FCFS, meaning that entries added later will exist with higher indices
 
 -  Entries can be modified using the subscript operator
-    *Both reading entried and the modification of the values of key-value pairs is supported
+    * Both reading entried and the modification of the values of key-value pairs is supported
