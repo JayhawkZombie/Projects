@@ -47,7 +47,7 @@ namespace KS
 
 			/* Utilities to remove entries */
 			bool removeFromKey(__key_type__ keyToRemove);
-			bool removeFromValue(__value_type__ valueToRemove, DictEnum = DICT_REMOVE_ALL_MATCHING_ENTRIES);
+			bool removeFromValue(__value_type__ valueToRemove, DictEnum REMOVE_COMMAND = DICT_REMOVE_ALL_MATCHING_ENTRIES);
 			bool removeIndexedEntry(const std::size_t index);
 
 			/* Utilities to alter entries */
