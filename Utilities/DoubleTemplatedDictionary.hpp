@@ -100,11 +100,11 @@ void DoubleTemplatedDictionary<__key_type__, __value_type__>::addEntry(__key_typ
 }
 
 template<typename __key_type__, typename __value_type__>
-void DoubleTemplatedDictionary<__key_type__, __value_type__>::debugPrint() const
+void DoubleTemplatedDictionary<__key_type__, __value_type__>::debugPrint(std::ostream &out) const
 {
 	for (int i = 0; i < m_numEntries; i++)
 	{
-		std::cerr << "Key: " << m_keys[i] << " | Value: " << m_values[i] << std::endl;
+		out << "Key: " << m_keys[i] << " | Value: " << m_values[i] << "\n";
 	}
 }
 
@@ -144,5 +144,63 @@ std::pair<__key_type__, __value_type__> DoubleTemplatedDictionary<__key_type__, 
 	else
 	{
 		return (std::make_pair<__key_type__, __value_type__>(m_keys[index], m_values[index]));
+	}
+}
+
+template<typename __key_type__, typename __value_type__>
+std::size_t DoubleTemplatedDictionary<__key_type__, __value_type__>::getIndexOfKey(__key_type__ key) const
+{
+	for (int i = 0; i < m_numEntries; i++)
+	{
+		if (m_keys[i] == key)
+			return key;
+	}
+
+	return NotFound;
+}
+
+template<typename __key_type__, typename __value_type__>
+std::size_t DoubleTemplatedDictionary<__key_type__, __value_type__>::getIndexOfValue(__value_type__ value) const
+{
+	for (int i = 0; i < m_numEntries; i++)
+	{
+		if (m_values[i] == value)
+			return i;
+	}
+	return NotFound;
+}
+
+template<typename __key_type__, typename __value_type__>
+bool DoubleTemplatedDictionary<__key_type__, __value_type__>::removeIndexedEntry(const std::size_t index)
+{
+	if (index <= 0 || index >= MaxSize)
+		return false;
+
+	m_keys.erase(index);
+	m_values.erase(index);
+
+	m_numEntries--;
+
+}
+
+template<typename __key_type__, typename __value_type__>
+bool DoubleTemplatedDictionary<__key_type__, __value_type__>::removeFromKey(__key_type__ key)
+{
+	if (m_numEntries < 1 || m_defaultKey == key)
+		return false;
+	else
+	{
+		return (removeIndexedEntry(getIndexOfKey(key)));
+	}
+}
+
+template<typename __key_type__, typename __value_type__>
+bool DoubleTemplatedDictionary<__key_type__, __value_type__>::removeFromValue(__value_type__ value)
+{
+	if (m_numEntries < 1 || m_defaultReturn == value)
+		return false;
+	else
+	{
+		return (removeIndexedEntry(getIndexOfValue(value)));
 	}
 }
