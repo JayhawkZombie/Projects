@@ -148,7 +148,7 @@ std::pair<__key_type__, __value_type__> DoubleTemplatedDictionary<__key_type__, 
 }
 
 template<typename __key_type__, typename __value_type__>
-std::size_t DoubleTemplatedDictionary<__key_type__, __value_type__>::getIndexOfKey(__key_type__ key) const
+unsigned int DoubleTemplatedDictionary<__key_type__, __value_type__>::getIndexOfKey(__key_type__ key) const
 {
 	for (int i = 0; i < m_numEntries; i++)
 	{
@@ -160,7 +160,7 @@ std::size_t DoubleTemplatedDictionary<__key_type__, __value_type__>::getIndexOfK
 }
 
 template<typename __key_type__, typename __value_type__>
-std::size_t DoubleTemplatedDictionary<__key_type__, __value_type__>::getIndexOfValue(__value_type__ value) const
+unsigned int DoubleTemplatedDictionary<__key_type__, __value_type__>::getIndexOfValue(__value_type__ value) const
 {
 	for (int i = 0; i < m_numEntries; i++)
 	{
@@ -171,16 +171,17 @@ std::size_t DoubleTemplatedDictionary<__key_type__, __value_type__>::getIndexOfV
 }
 
 template<typename __key_type__, typename __value_type__>
-bool DoubleTemplatedDictionary<__key_type__, __value_type__>::removeIndexedEntry(const std::size_t index)
+bool DoubleTemplatedDictionary<__key_type__, __value_type__>::removeIndexedEntry(int index)
 {
 	if (index <= 0 || index >= MaxSize)
 		return false;
 
-	m_keys.erase(index);
-	m_values.erase(index);
+	m_keys.erase(m_keys.begin() + index);
+	m_values.erase(m_values.begin() + index);
 
 	m_numEntries--;
 
+	return true;
 }
 
 template<typename __key_type__, typename __value_type__>
