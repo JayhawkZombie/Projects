@@ -11,7 +11,6 @@ namespace KS
 {
 	namespace Dictionary
 	{
-
 		template <typename __key_type__, typename __value_type__>
 		class DoubleTemplatedDictionary
 			/*  An ineffecient dictionary!
@@ -36,15 +35,32 @@ namespace KS
 			DoubleTemplatedDictionary(__key_type__ key, __value_type__  initValue, __value_type__ defaultValue);
 			DoubleTemplatedDictionary(__key_type__ key, __value_type__  initValue, __key_type__ initKey, __value_type__ defaultValue);
 
+
+			/* Utilities to add entries */
 			void addEntry(__key_type__ key, __value_type__ value);
 
-			void debugPrint() const;
+			/* Utilities to remove entries */
+			bool removeFromKey(__key_type__ keyToRemove);
+			bool removeFromValue(__value_type__ valueToRemove);
+			bool removeIndexedEntry(const std::size_t index);
 
+			/* Utilities to alter entries */
 			void alterDefaultKey(__key_type__ newDefaultKey);
 			void alterDefaultValue(__value_type__ newDefaultValue);
 
+			/* Utilities to extract information about the dictionary */
 			std::pair<__key_type__, __value_type__> extractDefaultInformation() const;
 			std::pair<__key_type__, __value_type__> extractInformationAtIndex(const unsigned int index) const;
+			std::size_t getIndexOfKey(__key_type__ key) const;
+			std::size_t getIndexOfValue(__value_type__ value) const;
+
+			/* Debugging Utilities */
+			void debugPrint(std::ostream &out) const;
+
+			/* Static constants */
+			static const std::size_t NotFound = INT_MAX;
+			static const std::size_t MaxSize = INT_MAX - 1;
+
 		private:
 			__value_type__ m_defaultReturn;
 			__key_type__ m_defaultKey;
