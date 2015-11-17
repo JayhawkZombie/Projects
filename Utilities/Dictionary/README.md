@@ -15,3 +15,13 @@ ________________________________________________________________________________
 
 -  Entries can be modified using the subscript operator
     * Both reading entried and the modification of the values of key-value pairs is supported
+
+####Example
+```c++
+int main()
+{
+   DoubleTemplatedDictionary<std::string, int> myDict; //No defaults are given
+   DoubleTemplatedDictionary<std::string, int> myDict2(5); //Default value = 5
+   DoubleTemplatedDictionary<std::string, int> myDict3("InitialKey", 7); //Initial key and value (NOT THE DEFAULT KEY AND VALUE)
+
+}
