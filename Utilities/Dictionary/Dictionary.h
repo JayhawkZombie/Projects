@@ -48,7 +48,7 @@ namespace KS
 			/* Utilities to remove entries */
 			bool removeFromKey(__key_type__ keyToRemove);
 			bool removeFromValue(__value_type__ valueToRemove, DictEnum REMOVE_COMMAND = DICT_REMOVE_ALL_MATCHING_ENTRIES);
-			bool removeIndexedEntry(const std::size_t index);
+			bool removeIndexedEntry(int index);
 
 			/* Utilities to alter entries */
 			void alterDefaultKey(__key_type__ newDefaultKey);
@@ -58,8 +58,8 @@ namespace KS
 			/* Utilities to extract information about the dictionary */
 			std::pair<__key_type__, __value_type__> extractDefaultInformation() const;
 			std::pair<__key_type__, __value_type__> extractInformationAtIndex(const unsigned int index) const;
-			std::size_t getIndexOfKey(__key_type__ key) const;
-			std::size_t getIndexOfValue(__value_type__ value) const;
+			unsigned int getIndexOfKey(__key_type__ key) const;
+			unsigned int getIndexOfValue(__value_type__ value) const;
 
 			/* Debugging Utilities */
 			void debugPrint(std::ostream &out) const;
