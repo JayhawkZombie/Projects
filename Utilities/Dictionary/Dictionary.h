@@ -11,6 +11,9 @@ namespace KS
 {
 	namespace Dictionary
 	{
+
+		typedef enum { DICT_REMOVE_ALL_MATCHING_ENTRIES, DICT_REMOVE_FIRST_OCCURRENCE } DictEnum;
+
 		template <typename __key_type__, typename __value_type__>
 		class DoubleTemplatedDictionary
 			/*  An ineffecient dictionary!
@@ -35,18 +38,22 @@ namespace KS
 			DoubleTemplatedDictionary(__key_type__ key, __value_type__  initValue, __value_type__ defaultValue);
 			DoubleTemplatedDictionary(__key_type__ key, __value_type__  initValue, __key_type__ initKey, __value_type__ defaultValue);
 
+			/* Overloaded operatoras */
+			__value_type__ operator[](const __key_type__ &) const;
+			__value_type__ & operator[](const __key_type__ &);
 
 			/* Utilities to add entries */
 			void addEntry(__key_type__ key, __value_type__ value);
 
 			/* Utilities to remove entries */
 			bool removeFromKey(__key_type__ keyToRemove);
-			bool removeFromValue(__value_type__ valueToRemove);
+			bool removeFromValue(__value_type__ valueToRemove, DictEnum = DICT_REMOVE_ALL_MATCHING_ENTRIES);
 			bool removeIndexedEntry(const std::size_t index);
 
 			/* Utilities to alter entries */
 			void alterDefaultKey(__key_type__ newDefaultKey);
 			void alterDefaultValue(__value_type__ newDefaultValue);
+			bool alterKey(__key_type__ oldkey, __key_type__ newKey);
 
 			/* Utilities to extract information about the dictionary */
 			std::pair<__key_type__, __value_type__> extractDefaultInformation() const;
