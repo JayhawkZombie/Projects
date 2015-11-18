@@ -58,9 +58,9 @@ R<type> - Return Type
 |```DoubleTemplatedDictionary()```| CO | ```_KT_``` InitialKey, ```_VT_``` InitialValue | CO | Constructor - sets inital key/value pair (not the default pair) |
 |```DoubleTemplatedDictionary()```| CO | ```_KT_``` InitialKey, ```_VT_``` InitialValue, ```_VT_``` DefaultValue | CO | Constructor - sets initial key/value pair and the default value |
 |```DoubleTemplatedDictionary()```| CO | ```_KT_``` InitialKey, ```_VT_``` InitialValue, ```_KT_``` DefaultKey, ```_VT_``` DefaultValue | CO | Constructor - sets initial key/value pair and manually sets both the default key and default value |
-|```addEntry()```| V | ```_KT_``` newKey, ```_VT_``` newValue | M | Adds an entry - Replaces existing value if the key already exists |
-|```removeIndexedEntry()```| B | ```U``` index | M | Removed the key/value pair assocaited with the index - returns true if successful, or false if either the entry does not exist or the index given was 0 |
-|```hasKey()```| B | ```_KT_``` key | C | Returns true if the dictionary has a key that matches the given |
+|```addEntry()```| Void | ```_KT_``` newKey, ```_VT_``` newValue | Mutates | Adds an entry - Replaces existing value if the key already exists |
+|```removeIndexedEntry()```| Bool | ```U``` index | Mutates | Removed the key/value pair assocaited with the index - returns true if successful, or false if either the entry does not exist or the index given was 0 |
+|```hasKey()```| Bool | ```_KT_``` key | Const | Returns true if the dictionary has a key that matches the given |
 
 ####Example
 ```c++
