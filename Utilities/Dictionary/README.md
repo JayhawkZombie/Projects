@@ -1,10 +1,11 @@
 ###A not necessarily effecient dictionary
 
-###"Because I Can" kind of project
+###"Because I Can" and "Why Not?"
 
 _____________________________________________________________________________________-
 ####Provides a templated Dictionary implementation
 ####Key-Value pairs are stored
+####Both the keys and values are permitted to be any arbitrary type, but certain conditions must be met for those types (listed below)
 ####The following are guarenteed by the Dictionary:
 -  A default key and default value will always be present and able to be extracted and altered, but never removed
 -  A maximum size is enforced, determined to be INT_MAX - 1 at compile time
@@ -59,7 +60,6 @@ R<type> - Return Type
 |```DoubleTemplatedDictionary()```| CO | ```_KT_``` InitialKey, ```_VT_``` InitialValue, ```_VT_``` DefaultValue | CO | Constructor - sets initial key/value pair and the default value |
 |```DoubleTemplatedDictionary()```| CO | ```_KT_``` InitialKey, ```_VT_``` InitialValue, ```_KT_``` DefaultKey, ```_VT_``` DefaultValue | CO | Constructor - sets initial key/value pair and manually sets both the default key and default value |
 |```addEntry()```| Void | ```_KT_``` newKey, ```_VT_``` newValue | Mutates | Adds an entry - Replaces existing value if the key already exists |
-|```removeIndexedEntry()```| Bool | ```U``` index | Mutates | Removed the key/value pair assocaited with the index - returns true if successful, or false if either the entry does not exist or the index given was 0 |
 |```hasKey()```| Bool | ```_KT_``` key | Const | Returns true if the dictionary has a key that matches the given |
 |```hasValue()```| Bool | ```_VY_``` value | Const | Returns true if the dictionary contains a value that matches the given |
 |```hasKeyValuePair()```| Bool | ```_KT_``` key, ```_VT``` value | Const | Returns true if the dictionary contains the given Key-Value pair |
@@ -70,8 +70,11 @@ R<type> - Return Type
 |```size()``` | Size_t | None | Const | Returns the number of entries in the dictionary, including the key-value pair |
 |```removeFromKey()```| Bool | ```_KT_``` key | Mutates | Removes the key-value pair associated with the given key - returns true if removal was successful, false otherwise. Does not allow removal of the default key-value pair |
 |```removeFromValue()```| Bool | ```_VT_``` value, COMMAND (REMOVE_ALL_ENTRIES or REMOVE_FIRST_INSTANCE) | Mutates | Removes either the first key-value pair with a value that matches the given or all instances, insicated by COMMAND |
+|```removeIndexedEntry()```| Bool | ```U``` index | Mutates | Removed the key/value pair assocaited with the index - returns true if successful, or false if either the entry does not exist or the index given was 0 |
 |```extractDefaultInformation()```| std::pair | None | Const | Returns a std::pair with the key and value of the default entry |
 |```extractInformationAtIndex()```| std::pair | ```U``` index | Const | Returns a std::pair with the key-value pair at the indicated index - will return the default key-value pair if the index given is < 0 or out of bounds |
+|```getIndexOfKey()```| Unsigned Int | ```_KT_``` key | Const | Returns a valid index if the key was found, or NotFound if it doesn't exist |
+|```getIndexOfValue()```|Unsigned Int| ```_VT_``` value | Const | Returns a valid index of the first occurence, or NotFound if it doesn't exist |
 
 ####Example
 ```c++
@@ -125,4 +128,6 @@ int main()
    myDict["key1"] = 127; //the value in the key-value pair will be altered
    myDict["lkfjdsl"] = 678; //this key doesn't exist, so the default entry will be altered instead - it will NOT be created
    
+   //This is totally valid, but makes little sense
+   DoubleTemplatedDictionary<int, int> intOnlyDict(1, 1, 3, 3); //Use integers for both keys and for values
 }
