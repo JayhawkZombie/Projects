@@ -302,3 +302,12 @@ bool DoubleTemplatedDictionary<__key_type__, __value_type__>::isEmpty() const
 {
 	return (m_numEntries < 2);
 }
+
+template<typename __key_type__, typename __value_type__>
+void DoubleTemplatedDictionary<__key_type__, __value_type__>::emptyDictionary()
+{
+	while (m_numEntries > 1)
+	{
+		removeIndexedEntry(1);
+	}
+}
