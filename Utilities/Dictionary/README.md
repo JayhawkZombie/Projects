@@ -61,6 +61,8 @@ R<type> - Return Type
 |```addEntry()```| Void | ```_KT_``` newKey, ```_VT_``` newValue | Mutates | Adds an entry - Replaces existing value if the key already exists |
 |```removeIndexedEntry()```| Bool | ```U``` index | Mutates | Removed the key/value pair assocaited with the index - returns true if successful, or false if either the entry does not exist or the index given was 0 |
 |```hasKey()```| Bool | ```_KT_``` key | Const | Returns true if the dictionary has a key that matches the given |
+|```hasValue()```| Bool | ```_VY_``` value | Const | Returns true if the dictionary contains a value that matches the given |
+|```hasKeyValuePair()```| Bool | ```_KT_``` key, ```_VT``` value | Const | Returns true if the dictionary contains the given Key-Value pair |
 
 ####Example
 ```c++
