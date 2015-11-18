@@ -55,6 +55,7 @@ namespace KS
 			void alterDefaultKey(__key_type__ newDefaultKey);
 			void alterDefaultValue(__value_type__ newDefaultValue);
 			bool alterKey(__key_type__ oldkey, __key_type__ newKey);
+			void emptyDictionary();
 
 			/* Utilities to extract information about the dictionary */
 			std::pair<__key_type__, __value_type__> extractDefaultInformation() const;
