@@ -34,13 +34,14 @@ namespace KS
 			*/
 			DoubleTemplatedDictionary();
 			DoubleTemplatedDictionary(__value_type__ defaultValue);
-			DoubleTemplatedDictionary(__key_type__ key, __value_type__  initValue);
+			DoubleTemplatedDictionary(__key_type__ initKey, __value_type__  initValue);
 			DoubleTemplatedDictionary(__key_type__ key, __value_type__  initValue, __value_type__ defaultValue);
 			DoubleTemplatedDictionary(__key_type__ key, __value_type__  initValue, __key_type__ initKey, __value_type__ defaultValue);
 
 			/* Overloaded operatoras */
 			__value_type__ operator[](const __key_type__ &) const;
 			__value_type__ & operator[](const __key_type__ &);
+
 
 			/* Utilities to add entries */
 			void addEntry(__key_type__ key, __value_type__ value);
@@ -60,6 +61,9 @@ namespace KS
 			std::pair<__key_type__, __value_type__> extractInformationAtIndex(const unsigned int index) const;
 			unsigned int getIndexOfKey(__key_type__ key) const;
 			unsigned int getIndexOfValue(__value_type__ value) const;
+			bool hasKey(__key_type__ key) const;
+			bool hasValue(__value_type__ value) const;
+			bool hasKeyValuePair(__key_type__ key, __value_type__ value) const;
 
 			/* Debugging Utilities */
 			void debugPrint(std::ostream &out) const;
