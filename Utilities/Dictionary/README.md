@@ -71,6 +71,7 @@ R<type> - Return Type
 |```removeFromKey()```| Bool | ```_KT_``` key | Mutates | Removes the key-value pair associated with the given key - returns true if removal was successful, false otherwise. Does not allow removal of the default key-value pair |
 |```removeFromValue()```| Bool | ```_VT_``` value, COMMAND (REMOVE_ALL_ENTRIES or REMOVE_FIRST_INSTANCE) | Mutates | Removes either the first key-value pair with a value that matches the given or all instances, insicated by COMMAND |
 |```removeIndexedEntry()```| Bool | ```U``` index | Mutates | Removed the key/value pair assocaited with the index - returns true if successful, or false if either the entry does not exist or the index given was 0 |
+|```emptyDictionary()```| Void | None | Mutates | Deletes all entries from the dictionary except for the default key-value pair |
 |```extractDefaultInformation()```| std::pair | None | Const | Returns a std::pair with the key and value of the default entry |
 |```extractInformationAtIndex()```| std::pair | ```U``` index | Const | Returns a std::pair with the key-value pair at the indicated index - will return the default key-value pair if the index given is < 0 or out of bounds |
 |```getIndexOfKey()```| Unsigned Int | ```_KT_``` key | Const | Returns a valid index if the key was found, or NotFound if it doesn't exist |
