@@ -63,6 +63,13 @@ R<type> - Return Type
 |```hasKey()```| Bool | ```_KT_``` key | Const | Returns true if the dictionary has a key that matches the given |
 |```hasValue()```| Bool | ```_VY_``` value | Const | Returns true if the dictionary contains a value that matches the given |
 |```hasKeyValuePair()```| Bool | ```_KT_``` key, ```_VT``` value | Const | Returns true if the dictionary contains the given Key-Value pair |
+|```alterDefaultKey()```| Void | ```_KT_``` newDefaultKey | Mutates | Changes the key associated with the default entry |
+|```alterDefaultValue()```| Void | ```_VT_``` newDefaultValue | Mutates | Changes the value associated with the default entry |
+|```alterKey()```| Bool | ```_KT__``` oldKey, ```_KT_``` newKey | Mutatues | Returns true if the change was implemted, false if the key does not exist or the was identical to that of the default entry |
+|```isEmpty()``` | Bool | None | Const | Returns true if the dictionary contains only the default key-value pair |
+|```size()``` | Size_t | None | Const | Returns the number of entries in the dictionary, including the key-value pair |
+|```removeFromKey()```| Bool | ```_KT_``` key | Mutates | Removes the key-value pair associated with the given key - returns true if removal was successful, false otherwise. Does not allow removal of the default key-value pair |
+|```removeFromValue()```| Bool | ```_VT_``` value, COMMAND (REMOVE_ALL_ENTRIES or REMOVE_FIRST_INSTANCE) | Mutates | Removes either the first key-value pair with a value that matches the given or all instances, insicated by COMMAND |
 
 ####Example
 ```c++
