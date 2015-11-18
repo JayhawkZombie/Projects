@@ -77,8 +77,52 @@ R<type> - Return Type
 ```c++
 int main()
 {
-   DoubleTemplatedDictionary<std::string, int> myDict; //No defaults are given
+   DoubleTemplatedDictionary<std::string, int> myDict; //No defaults are given | defaultKey = "", defaultValue = 0
    DoubleTemplatedDictionary<std::string, int> myDict2(5); //Default value = 5
    DoubleTemplatedDictionary<std::string, int> myDict3("InitialKey", 7); //Initial key and value (NOT THE DEFAULT KEY AND VALUE)
-
+   DoubleTemplatedDictionary<std::string, int> myDict4("initKey", 1, 4); //initKey = "initKey", initValue = 1, defaultValue = 4
+   DoubleTemplatedDictionary<std::string, int> myDict5("initKey", 1, "defaultKey", 4); //initKey = "initKey", initValue = 1, defaultKey = "defaultKey", defaultValue = 4
+   
+   myDict.addEntry("newEntry", 5); //Add a new key-value pair to the dictionary
+   myDict.addEntry("", 0); //This will overwrite the default entry
+   
+   myDict.alterDefaultKey("newDefaultKey"); //the default entry is now referenced using "newDefaultKey" as the key
+   myDict.alterDefaultValue(17); //the new default value is 17
+   
+   std::cout << myDict["newEntry"] << std::endl; //This will print "5"
+   
+   myDict.addEntry("key1", 1);
+   myDict.addEntry("key2", 2);
+   myDict.addEntry("key3", 3);
+   myDict.addEntry("key4", 3);
+   myDict.addEntry("key5", 3);
+   myDict.addEntry("key6", 3);
+   
+   if (myDict.hasKey("key1")) //returns true
+      std::cout << "Has \"key1\"!" << std::endl;
+   if (myDict.hasValue(1)) //return true
+      std::cout << "Has value 1!" << std::endl;
+   if (myDict.hasKey("testkey")) //returns false
+      std::cout << "Yay!" << std::endl;
+   else
+      std::cout << "Oh, no! :( " << std::endl;
+   
+   if (myDict.hasKeyValuePair("key1", 1)) //returns true
+      std::cout << "Yay!" << std::endl;
+   if (myDict.hasKeyValuePair("key1", 4)) //returns false
+      std::cout << "Yay!" << std::endl;
+   else
+      std::cout << "Oh, no! :( " << std::endl;
+      
+   unsigned int myIndex = myDict.getIndexOfKey("key1"); //myIndex will be equal to 3!
+   unsigned int notFoundIndex = myDict.getIndexOfKey("LSDKJFSDLKFJ"); //notFoundIndex will be equal to NotFound (INT_MAX)
+   
+   myDict.removeFromKey("key1"); //The key-value pair associated with "key1" will be removed
+   myDict.removeFromKey("dlfjldsf"); //nothing will happen - the dictionary will be altered
+   myDict.removeFromValue(3, DICT_REMOVE_FIRST_OCCURRENCE); //The first key-value pair that has the value of 3 will be remvoed
+   myDict.removeFromValue(3, DICT_REMOVE_ALL_MATCHING_ENTRIES); //ALL key-value pairs with the value of 3 will be removed
+   
+   myDict["key1"] = 127; //the value in the key-value pair will be altered
+   myDict["lkfjdsl"] = 678; //this key doesn't exist, so the default entry will be altered instead - it will NOT be created
+   
 }
