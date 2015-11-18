@@ -250,3 +250,40 @@ __value_type__& DoubleTemplatedDictionary<__key_type__, __value_type__>::operato
 	}
 	return m_defaultReturn;
 }
+
+template<typename __key_type__, typename __value_type__>
+bool DoubleTemplatedDictionary<__key_type__, __value_type__>::hasKey(__key_type__ key) const
+{
+	for (int i = 0; i < m_numEntries; i++)
+	{
+		if (m_keys[i] == key)
+			return true;
+	}
+	
+	return false;
+}
+
+template<typename __key_type__, typename __value_type__>
+bool DoubleTemplatedDictionary<__key_type__, __value_type__>::hasValue(__value_type__ value) const
+{
+	for (int i = 0; i < m_numEntries; i++)
+	{
+		if (m_values[i] == value)
+			return true;
+	}
+	return false;
+}
+
+template<typename __key_type__, typename __value_type__>
+bool DoubleTemplatedDictionary<__key_type__, __value_type__>::hasKeyValuePair(__key_type__ key, __value_type__ value) const
+{
+	for (int i = 0; i < m_numEntries; i++)
+	{
+		if (m_keys[i] == key)
+		{
+			return (m_values[i] == value)
+		}
+	}
+	
+	return false;
+}
