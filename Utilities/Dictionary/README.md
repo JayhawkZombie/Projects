@@ -19,6 +19,7 @@ ________________________________________________________________________________
     * operator ==
     * operator = 
     * copy constructor
+    * zero-argument constuctor
 
 ####Example
 ```c++
