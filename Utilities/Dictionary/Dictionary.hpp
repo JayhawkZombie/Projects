@@ -68,7 +68,7 @@ DoubleTemplatedDictionary<__key_type__, __value_type__>::DoubleTemplatedDictiona
 }
 
 template<typename __key_type__, typename __value_type__>
-DoubleTemplatedDictionary<__key_type__, __value_type__>::DoubleTemplatedDictionary(__key_type__ key, __value_type__  initValue, __key_type__ defaultKey, __value_type__ defaultValue)
+DoubleTemplatedDictionary<__key_type__, __value_type__>::DoubleTemplatedDictionary(__key_type__ initKey, __value_type__  initValue, __key_type__ defaultKey, __value_type__ defaultValue)
 {
 	m_keys.reserve(2);
 	m_defaultKey = defaultKey;
@@ -90,7 +90,10 @@ void DoubleTemplatedDictionary<__key_type__, __value_type__>::addEntry(__key_typ
 	for (int i = 0; i < m_numEntries; i++)
 	{
 		if (m_keys[i] == key)
+		{
+			m_values[i] = value;
 			return;
+		}
 	}
 
 	m_keys.push_back(key);
@@ -286,4 +289,16 @@ bool DoubleTemplatedDictionary<__key_type__, __value_type__>::hasKeyValuePair(__
 	}
 	
 	return false;
+}
+
+template<typename __key_type__, typename __value_type__>
+std::size_t DoubleTemplatedDictionary<__key_type__, __value_type__>::size() const
+{
+	return std::size_t(m_numEntries);
+}
+
+template<typename __key_type__, typename __value_type__>
+bool DoubleTemplatedDictionary<__key_type__, __value_type__>::isEmpty() const
+{
+	return (m_numEntries < 2);
 }
