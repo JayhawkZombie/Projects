@@ -21,6 +21,47 @@ ________________________________________________________________________________
     * copy constructor
     * zero-argument constuctor
 
+###Structure
+R = Removable
+M = Mutable
+
+|Keys|Values|Properties|Index|
+|:---|:-----|----------|-----|
+|defaultKey|defaultValue|M|0|
+|key0|value0|RM|0|
+|key1|value1|RM|1|
+|... | ...  |RM|.|
+|keyN|valueN|RM|N - 1|
+
+###Available Functions
+
+- CO = Constructor
+- C = const qualified
+- S = static
+- H = helper
+- M = Manipulating
+
+R<type> - Return Type
+   - CO = Constructor
+   - B = Bool
+   - U = Unsigned Int
+   - S = Size_t
+   - V = Void
+   - _VT_ = ValueType (chosen template type)
+   - _KT_ = KeyType (chosen template type)
+   - SP = std::pair
+
+|Function Name| Return Type | Arguments | Properties | Description |
+|:------------|:------------|:----------|:-----------|:------------|
+|```DoubleTemplatedDictionary()```| CO | None | CO | No-Arg Constructor |
+|```DoubleTemplatedDictionary()```| CO | ```_VT_``` DefaultValue | CO | Constructor - Gives defaultValue to the dictionary |
+|```DoubleTemplatedDictionary()```| CO | ```_KT_``` InitialKey, ```_VT_``` InitialValue | CO | Constructor - sets inital key/value pair (not the default pair) |
+|```DoubleTemplatedDictionary()```| CO | ```_KT_``` InitialKey, ```_VT_``` InitialValue, ```_VT_``` DefaultValue | CO | Constructor - sets initial key/value pair and the default value |
+|```DoubleTemplatedDictionary()```| CO | ```_KT_``` InitialKey, ```_VT_``` InitialValue, ```_KT_``` DefaultKey, ```_VT_``` DefaultValue | CO | Constructor - sets initial key/value pair and manually sets both the default key and default value |
+|```addEntry()```| V | ```_KT_``` newKey, ```_VT_``` newValue | M | Adds an entry - Replaces existing value if the key already exists |
+|```removeIndexedEntry()```| B | ```U``` index | M | Removed the key/value pair assocaited with the index - returns true if successful, or false if either the entry does not exist or the index given was 0 |
+|```hasKey()```| B | ```_KT_``` key | C | Returns true if the dictionary has a key that matches the given |
+
 ####Example
 ```c++
 int main()
