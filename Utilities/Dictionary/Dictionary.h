@@ -35,8 +35,8 @@ namespace KS
 			DoubleTemplatedDictionary();
 			DoubleTemplatedDictionary(__value_type__ defaultValue);
 			DoubleTemplatedDictionary(__key_type__ initKey, __value_type__  initValue);
-			DoubleTemplatedDictionary(__key_type__ key, __value_type__  initValue, __value_type__ defaultValue);
-			DoubleTemplatedDictionary(__key_type__ key, __value_type__  initValue, __key_type__ initKey, __value_type__ defaultValue);
+			DoubleTemplatedDictionary(__key_type__ initKey, __value_type__  initValue, __value_type__ defaultValue);
+			DoubleTemplatedDictionary(__key_type__ initKey, __value_type__  initValue, __key_type__ defaultKey, __value_type__ defaultValue);
 
 			/* Overloaded operatoras */
 			__value_type__ operator[](const __key_type__ &) const;
@@ -64,6 +64,8 @@ namespace KS
 			bool hasKey(__key_type__ key) const;
 			bool hasValue(__value_type__ value) const;
 			bool hasKeyValuePair(__key_type__ key, __value_type__ value) const;
+			bool isEmpty() const;
+			std::size_t size() const;
 
 			/* Debugging Utilities */
 			void debugPrint(std::ostream &out) const;
