@@ -70,6 +70,8 @@ R<type> - Return Type
 |```size()``` | Size_t | None | Const | Returns the number of entries in the dictionary, including the key-value pair |
 |```removeFromKey()```| Bool | ```_KT_``` key | Mutates | Removes the key-value pair associated with the given key - returns true if removal was successful, false otherwise. Does not allow removal of the default key-value pair |
 |```removeFromValue()```| Bool | ```_VT_``` value, COMMAND (REMOVE_ALL_ENTRIES or REMOVE_FIRST_INSTANCE) | Mutates | Removes either the first key-value pair with a value that matches the given or all instances, insicated by COMMAND |
+|```extractDefaultInformation()```| std::pair | None | Const | Returns a std::pair with the key and value of the default entry |
+|```extractInformationAtIndex()```| std::pair | ```U``` index | Const | Returns a std::pair with the key-value pair at the indicated index - will return the default key-value pair if the index given is < 0 or out of bounds |
 
 ####Example
 ```c++
