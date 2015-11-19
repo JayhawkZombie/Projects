@@ -134,7 +134,7 @@ void DoubleTemplatedDictionary<__key_type__, __value_type__>::alterDefaultValue(
 template<typename __key_type__, typename __value_type__>
 std::pair<__key_type__, __value_type__> DoubleTemplatedDictionary<__key_type__, __value_type__>::extractDefaultInformation() const
 {
-	return (std::make_pair < __key_type__, __value_type__>(m_defaultKey, m_defaultReturn));
+	return (std::make_pair(m_defaultKey, m_defaultReturn));
 }
 
 template<typename __key_type__, typename __value_type__>
@@ -142,11 +142,11 @@ std::pair<__key_type__, __value_type__> DoubleTemplatedDictionary<__key_type__, 
 {
 	if (index < 0 || m_numEntries <= 0)
 	{
-		return (std::make_pair<__key_type__, __value_type__>(m_defaultKey, m_defaultReturn));
+		return (std::make_pair(m_defaultKey, m_defaultReturn));
 	}
 	else
 	{
-		return (std::make_pair<__key_type__, __value_type__>(m_keys[index], m_values[index]));
+		return (std::make_pair(m_keys[index], m_values[index]));
 	}
 }
 
@@ -232,13 +232,17 @@ bool DoubleTemplatedDictionary<__key_type__, __value_type__>::alterKey(__key_typ
 }
 
 template<typename __key_type__, typename __value_type__>
-__value_type__ DoubleTemplatedDictionary<__key_type__, __value_type__>::operator[](const __key_type__ &key) const
+__value_type__& DoubleTemplatedDictionary<__key_type__, __value_type__>::operator[](const __key_type__ &key) const
 {
+
+	std::cerr << "\n\n\nWRITING\n\n\n" << std::endl;
+
 	for (int i = 0; i < m_numEntries; i++)
 	{
 		if (m_keys[i] == key)
 			return m_values[i];
 	}
+	
 	return
 		m_defaultReturn;
 }
@@ -246,17 +250,23 @@ __value_type__ DoubleTemplatedDictionary<__key_type__, __value_type__>::operator
 template<typename __key_type__, typename __value_type__>
 __value_type__& DoubleTemplatedDictionary<__key_type__, __value_type__>::operator[](const __key_type__ &key)
 {
+
+	std::cerr << "\n\n\nREADING\n\n\n" << std::endl;
+
 	for (int i = 0; i < m_numEntries; i++)
 	{
 		if (m_keys[i] == key)
 			return m_values[i];
 	}
-	return m_defaultReturn;
+	__value_type__ temp;
+	return
+		temp;
 }
 
 template<typename __key_type__, typename __value_type__>
 bool DoubleTemplatedDictionary<__key_type__, __value_type__>::hasKey(__key_type__ key) const
 {
+
 	for (int i = 0; i < m_numEntries; i++)
 	{
 		if (m_keys[i] == key)
