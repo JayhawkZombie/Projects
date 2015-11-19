@@ -234,9 +234,6 @@ bool DoubleTemplatedDictionary<__key_type__, __value_type__>::alterKey(__key_typ
 template<typename __key_type__, typename __value_type__>
 __value_type__& DoubleTemplatedDictionary<__key_type__, __value_type__>::operator[](const __key_type__ &key) const
 {
-
-	std::cerr << "\n\n\nWRITING\n\n\n" << std::endl;
-
 	for (int i = 0; i < m_numEntries; i++)
 	{
 		if (m_keys[i] == key)
@@ -250,9 +247,6 @@ __value_type__& DoubleTemplatedDictionary<__key_type__, __value_type__>::operato
 template<typename __key_type__, typename __value_type__>
 __value_type__& DoubleTemplatedDictionary<__key_type__, __value_type__>::operator[](const __key_type__ &key)
 {
-
-	std::cerr << "\n\n\nREADING\n\n\n" << std::endl;
-
 	for (int i = 0; i < m_numEntries; i++)
 	{
 		if (m_keys[i] == key)
